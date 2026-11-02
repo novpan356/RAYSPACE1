@@ -1,6 +1,6 @@
 {
   "name": "rayspace-tekken-scoreboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "铁拳8 比赛记分板：透明置顶、OBS 浏览器源及全局快捷键",
   "main": "src/main.cjs",
   "author": "RAYSPACE",
@@ -9,9 +9,10 @@
     "start": "electron .",
     "dev": "node src/server.cjs",
     "test": "node --test test/*.test.cjs",
-    "pack:win": "electron-builder --win zip --x64",
+    "pack:win": "node scripts/build-installer.cjs",
     "pack:linux": "electron-builder --linux dir",
-    "setup:electron": "node node_modules/electron/install.js"
+    "setup:electron": "node node_modules/electron/install.js",
+    "pack:win:zip": "electron-builder --win zip --x64 -c.win.artifactName=RAYSPACE-Scoreboard-${version}-Windows-x64.zip"
   },
   "devDependencies": {
     "electron": "45.2.1",
@@ -30,9 +31,11 @@
       "package.json"
     ],
     "win": {
-      "target": "zip",
-      "signAndEditExecutable": false,
-      "artifactName": "RAYSPACE-Scoreboard-${version}-Windows-x64.zip"
+      "target": "nsis",
+      "signAndEditExecutable": true,
+      "artifactName": "RAYSPACE-Scoreboard-Setup-${version}.exe",
+      "signExecutable": false,
+      "icon": "build/icon.ico"
     },
     "linux": {
       "target": "dir"
@@ -46,6 +49,32 @@
         "from": "LICENSE",
         "to": "LICENSE-RAYSPACE.txt"
       }
-    ]
+    ],
+    "compression": "maximum",
+    "electronLanguages": [
+      "zh-CN",
+      "zh-TW",
+      "en-US"
+    ],
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "RAYSPACE 铁拳8记分板",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "installerLanguages": [
+        "zh_CN",
+        "en_US"
+      ],
+      "language": "2052",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "artifactName": "RAYSPACE-Scoreboard-Setup-${version}.exe",
+      "differentialPackage": false
+    }
   }
 }

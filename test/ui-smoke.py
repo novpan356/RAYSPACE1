@@ -40,7 +40,7 @@ with sync_playwright() as p:
  page.wait_for_function("()=>!document.querySelector('#toast').classList.contains('show')")
  page.screenshot(path=str(out/'control-panel.png'),full_page=True)
  # Composite only for an accurate native 1080p output preview.
- background=Image.open(root/'public/assets/game-reference.png').convert('RGBA');Image.alpha_composite(background,Image.open(out/'overlay-transparent.png').convert('RGBA')).convert('RGB').save(out/'broadcast-preview.png')
+ background=Image.open(root/'public/assets/game-reference.webp').convert('RGBA');Image.alpha_composite(background,Image.open(out/'overlay-transparent.png').convert('RGBA')).convert('RGB').save(out/'broadcast-preview.png')
  assert not errors,errors
  browser.close()
  print(json.dumps({'ui':'passed','checks':['edit ID / identity','add score','replace logo','swap full information','undo','show / hide','separate OBS SSE sync','safe text rendering','long-label bounds','native HUD alpha clear','1920x1080 output'],'consoleErrors':errors},ensure_ascii=False))

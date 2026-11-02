@@ -27,9 +27,9 @@ async function createServer({file,port=17880,desktop=null}={}){
     return json(res,404,{error:'找不到此操作'});
    }
    if(req.method!=='GET')return json(res,405,{error:'不支持此请求'});
-   const routes={'/':'index.html','/index.html':'index.html','/overlay.html':'overlay.html','/control.js':'control.js','/scoreboard.js':'scoreboard.js','/style.css':'style.css','/overlay.css':'overlay.css','/overlay.js':'overlay.js','/assets/template.svg':'assets/template.svg','/assets/game-reference.png':'assets/game-reference.png','/assets/ScoreboardCondensed.otf':'assets/ScoreboardCondensed.otf'};
+   const routes={'/':'index.html','/index.html':'index.html','/overlay.html':'overlay.html','/control.js':'control.js','/scoreboard.js':'scoreboard.js','/style.css':'style.css','/overlay.css':'overlay.css','/overlay.js':'overlay.js','/assets/template.svg':'assets/template.svg','/assets/game-reference.webp':'assets/game-reference.webp','/assets/ScoreboardCondensed.otf':'assets/ScoreboardCondensed.otf'};
    const filePath=routes[pathname];if(!filePath)return json(res,404,{error:'未找到页面'});
-   const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.otf':'font/otf'};
+   const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.otf':'font/otf'};
    res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; frame-ancestors 'self'");
    res.writeHead(200,{'Content-Type':types[path.extname(filePath)],'Cache-Control':'no-cache'});fs.createReadStream(path.join(root,filePath)).pipe(res);
   }catch(error){json(res,400,{error:error.message||'操作失败'});}

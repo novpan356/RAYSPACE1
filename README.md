@@ -1,13 +1,13 @@
 # RAYSPACE · 铁拳8 比赛记分板
 
-**直接下载 Windows 软件：** [下载整个仓库 ZIP](https://github.com/novpan356/RAYSPACE1/archive/refs/heads/main.zip)，完整解压后进入 `windows-download`，双击 `start-windows.cmd`。脚本会合并分片、验证 SHA-256、解压并启动软件。无需 Node.js。详见 [下载与启动](windows-download/下载与启动.md)。
+**直接下载安装程序：** [RAYSPACE-Scoreboard-Setup-1.0.1.exe](https://github.com/novpan356/RAYSPACE1/raw/refs/heads/main/windows-download/RAYSPACE-Scoreboard-Setup-1.0.1.exe)。双击 EXE 按向导安装即可，无需 CMD、Node.js 或解压分片。安装后使用桌面「RAYSPACE 铁拳8记分板」快捷方式启动。
 
-Windows 10/11 x64 桌面软件。采用确认的黑红切角模板，原生 1920×1080 透明画布，游戏画面不缩放。无需登录、无需联网运行、不向游戏进程注入代码。
+Windows 10/11 x64 桌面软件，提供单文件 EXE 安装程序。采用确认的黑红切角模板，原生 1920×1080 透明画布，游戏画面不缩放。无需登录、无需联网运行、不向游戏进程注入代码。
 
-## 使用 Windows 版
+## 安装 Windows 版
 
-1. 下载 `RAYSPACE-Scoreboard-1.0.0-Windows-x64.zip`，**将整个 ZIP 解压**到一个文件夹。
-2. 双击 `RAYSPACE Scoreboard.exe`。不要只移动 EXE；同目录运行时文件必须一起保留。
+1. 下载 `RAYSPACE-Scoreboard-Setup-1.0.1.exe`，双击打开安装向导，选择安装位置。
+2. 安装完成后，从桌面或开始菜单的「RAYSPACE 铁拳8记分板」快捷方式启动；不需要 CMD。卸载可从 Windows「设置 → 应用」进行，选手配置默认保留。
 3. 在控制台填写双方 ID、身份、比分，点击「替换图标」选择本地 PNG / JPEG / WebP。每张图最大 1 MB，建议正方形透明 PNG。
 4. 修改自动保存。左右互换包含姓名、身份、图标与比分。比分范围 0～999，归零与信息修改可撤销（最多 50 次，本次运行内）。
 5. 控制窗口关闭后留在系统托盘；从托盘双击可重新打开。要结束服务和快捷键，请用托盘「退出」或控制台「退出软件」。
@@ -72,12 +72,12 @@ npm test
 npm run pack:win
 ```
 
-Windows ZIP 生成到 `release/`。跨平台构建的 ZIP 未签名；仅使用 Electron 官方预编译运行时，打包不改写可执行文件签名。`test/ui-smoke.py` 需 Python、Playwright、Pillow 及 Chromium，针对运行中的 `npm run dev` 执行真实浏览器操作和透明像素避让验证。
+Windows 安装程序生成到 `release/`，使用 NSIS 向导，可选安装目录，创建桌面/开始菜单快捷方式，并注册卸载入口。仅安装到当前用户，无需管理员权限，卸载默认保留用户数据。运行 `npm run pack:win:zip` 可另行生成免安装 ZIP。构建使用 Electron 官方运行时及受校验的打包工具；安装程序未做代码签名。Linux 构建使用 `scripts/build-installer.cjs` 调用固定版本打包器自带的 PE/NSIS 校验提取器生成卸载程序，不依赖运行 Wine，不修改标准安装模板。`test/ui-smoke.py` 需 Python、Playwright、Pillow 及 Chromium，针对运行中的 `npm run dev` 执行真实浏览器操作和透明像素避让验证。
 
 ## 验证范围
 
 核心状态/HTTP 测试验证计分边界、互换、撤销、持久化、图标格式、跨站请求和快捷键配置失败回滚。浏览器测试验证编辑、替换图标、加分、互换、撤销、可见性、OBS 实时同步、长文字边界及透明像素。
 
-Electron 已在 Linux 虚拟桌面实际验证置顶、不抢焦点、鼠标点击穿透、全局快捷键（其他原生窗口在前台时）与关闭控制台后驻留。Windows 包在 Linux 云环境构建。此处无法直接运行 Windows 或真实铁拳8/OBS，因此不能声称已完成 Windows 游戏内兼容性测试；请在实际机器上检查所用 HUD 和快捷键是否适配。
+Electron 已在 Linux 虚拟桌面实际验证置顶、不抢焦点、鼠标点击穿透、全局快捷键（其他原生窗口在前台时）与关闭控制台后驻留。Windows 安装程序在 Linux 云环境构建。此处无法直接运行 Windows 或真实铁拳8/OBS，因此不能声称已完成 Windows 游戏内兼容性测试；请在实际机器上检查所用 HUD 和快捷键是否适配。
 
 参考画面来自 [Y3S99/FG-scoreboard-overlay](https://github.com/Y3S99/FG-scoreboard-overlay) 的社区示例，用于控制台静态预览；实际输出是透明图层，不包含游戏截图。字体及其授权见 `public/assets/FONT-LICENSE.txt`。

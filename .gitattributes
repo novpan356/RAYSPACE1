@@ -3,3 +3,6 @@
 *.part* -text -diff
 *.png -text
 *.otf -text
+*.exe -text -diff
+*.webp -text
+*.ico -text
