@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<title>Tekken 8 — full-height tournament scoreboard</title>
+<defs>
+<linearGradient id="rim" x2="0" y2="1"><stop stop-color="#B72C50"/><stop offset=".6" stop-color="#701934"/><stop offset="1" stop-color="#9F2545"/></linearGradient>
+<linearGradient id="face" x2="0" y2="1"><stop stop-color="#21131F"/><stop offset=".5" stop-color="#090A10"/><stop offset="1" stop-color="#20121A"/></linearGradient>
+<linearGradient id="score" x2="1" y2="0"><stop stop-color="#801536"/><stop offset=".7" stop-color="#B5234D"/><stop offset="1" stop-color="#7E1838"/></linearGradient>
+</defs>
+<g font-family="Arial,sans-serif">
+<g id="left-player">
+<path fill="url(#rim)" d="M112 0H760L704 35V70H180Z"/>
+<path fill="url(#face)" d="M126 6H631L655 62H182Z"/>
+<path fill="#782341" d="M277 6H283L316 62H310Z"/>
+<text x="218" y="43" font-size="25" font-weight="900" text-anchor="middle" fill="#F5F2F5">N</text>
+<text x="323" y="43" font-size="15" font-weight="800" fill="#BA3458">CHALLENGER</text>
+<text x="454" y="47" font-family="Nimbus Sans Narrow,Arial Narrow,sans-serif" font-size="43" font-weight="700" fill="#F4F1F5">NOVA</text>
+<path fill="url(#score)" d="M628 4H748L702 33V65H655Z"/>
+<text x="679" y="47" text-anchor="middle" font-family="Nimbus Sans Narrow,sans-serif" font-size="49" font-weight="700" fill="#FFFFFF">2</text>
+</g>
+<g id="right-player">
+<path fill="url(#rim)" d="M1160 0H1808L1740 70H1216V35Z"/>
+<path fill="url(#face)" d="M1289 6H1794L1738 62H1265Z"/>
+<path fill="#782341" d="M1637 6H1643L1610 62H1604Z"/>
+<text x="1702" y="43" font-size="25" font-weight="900" text-anchor="middle" fill="#F5F2F5">R</text>
+<text x="1303" y="42" font-size="13" font-weight="800" fill="#BA3458">DEFENDING CHAMPION</text>
+<text x="1594" y="47" text-anchor="end" font-family="Nimbus Sans Narrow,Arial Narrow,sans-serif" font-size="43" font-weight="700" fill="#F4F1F5">RYUJIN</text>
+<path fill="url(#score)" d="M1172 4H1292L1265 65H1218V33Z"/>
+<text x="1241" y="47" text-anchor="middle" font-family="Nimbus Sans Narrow,sans-serif" font-size="49" font-weight="700" fill="#FFFFFF">1</text>
+</g>
+<g id="round-label">
+<path fill="url(#rim)" d="M800 0H1120L1090 28H830Z"/>
+<path fill="url(#face)" d="M812 3H1108L1086 23H834Z"/>
+<text x="960" y="18" text-anchor="middle" font-size="16" font-weight="800" letter-spacing="2" fill="#F1EDF2">ROUND 2 POOLS</text>
+</g>
+</g></svg>

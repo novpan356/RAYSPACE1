@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "file": "RAYSPACE-Scoreboard-1.0.0-Windows-x64.zip",
+  "bytes": 157166366,
+  "sha256": "13c658e81f747f53aedccf45a7f4739527d675f2f1a6a1c2417e34e1061c18eb",
+  "parts": [
+    {
+      "name": "RAYSPACE-Windows-x64.zip.part01",
+      "bytes": 41943040,
+      "sha256": "791fa70b23ea2a832dc18208a01b7e124a546464d83532ff4b1ae1d31dd9a168"
+    },
+    {
+      "name": "RAYSPACE-Windows-x64.zip.part02",
+      "bytes": 41943040,
+      "sha256": "967d66baa72b580f815ddd0b524fa14ab747dc7a5da1c096cd12c51d2fc5b056"
+    },
+    {
+      "name": "RAYSPACE-Windows-x64.zip.part03",
+      "bytes": 41943040,
+      "sha256": "f39614631beacbf43ba609fdde202046239a3b83f4e8043a7f3f4d3306370024"
+    },
+    {
+      "name": "RAYSPACE-Windows-x64.zip.part04",
+      "bytes": 31337246,
+      "sha256": "868e9146f01cd31a3ce6c59c9d3d3e6f72d0547633c1135c2a32a4e2c2e4c17d"
+    }
+  ]
+}

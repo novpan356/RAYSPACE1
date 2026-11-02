@@ -1,0 +1,7 @@
+node_modules/
+release/
+.local/
+artifacts/
+*.log
+__pycache__/
+*.pyc

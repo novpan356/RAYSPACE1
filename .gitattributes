@@ -1,0 +1,5 @@
+* text=auto
+*.cmd text eol=crlf
+*.part* -text -diff
+*.png -text
+*.otf -text

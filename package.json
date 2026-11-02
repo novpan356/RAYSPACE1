@@ -1,0 +1,51 @@
+{
+  "name": "rayspace-tekken-scoreboard",
+  "version": "1.0.0",
+  "description": "铁拳8 比赛记分板：透明置顶、OBS 浏览器源及全局快捷键",
+  "main": "src/main.cjs",
+  "author": "RAYSPACE",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "node src/server.cjs",
+    "test": "node --test test/*.test.cjs",
+    "pack:win": "electron-builder --win zip --x64",
+    "pack:linux": "electron-builder --linux dir",
+    "setup:electron": "node node_modules/electron/install.js"
+  },
+  "devDependencies": {
+    "electron": "45.2.1",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.rayspace.tekken.scoreboard",
+    "productName": "RAYSPACE Scoreboard",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "public/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "zip",
+      "signAndEditExecutable": false,
+      "artifactName": "RAYSPACE-Scoreboard-${version}-Windows-x64.zip"
+    },
+    "linux": {
+      "target": "dir"
+    },
+    "extraFiles": [
+      {
+        "from": "README.md",
+        "to": "使用说明.md"
+      },
+      {
+        "from": "LICENSE",
+        "to": "LICENSE-RAYSPACE.txt"
+      }
+    ]
+  }
+}

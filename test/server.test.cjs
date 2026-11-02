@@ -1,0 +1,15 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');const {createServer}=require('../src/server.cjs');
+test('HTTP state, action, SSE, security and transparent overlay workflow',async t=>{const app=await createServer({port:0});t.after(()=>app.close());const base=app.origin;const session=await fetch(base+'/api/session').then(r=>r.json());const post=(route,body,headers={})=>fetch(base+route,{method:'POST',headers:{'Content-Type':'application/json','X-Scoreboard-Token':session.token,...headers},body:JSON.stringify(body)});
+ assert.equal((await fetch(base+'/api/action',{method:'POST',body:'{}'})).status,403);
+ assert.equal((await post('/api/action',{name:'leftPlus'},{Origin:'https://evil.test'})).status,403);
+ const abort=new AbortController();const events=await fetch(base+'/events',{signal:abort.signal});const reader=events.body.getReader();const first=new TextDecoder().decode((await reader.read()).value);assert.match(first,/NOVA/);
+ assert.equal((await post('/api/state',{left:{id:'ALPHA',identity:'队长',score:4},right:{id:'BETA',score:2}})).status,200);
+ let event=new TextDecoder().decode((await reader.read()).value);assert.match(event,/ALPHA/);
+ await post('/api/action',{name:'swap'});let state=await fetch(base+'/api/state').then(r=>r.json());assert.equal(state.left.id,'BETA');assert.equal(state.right.score,4);await post('/api/action',{name:'undo'});state=await fetch(base+'/api/state').then(r=>r.json());assert.equal(state.left.id,'ALPHA');
+ assert.equal((await post('/api/state',{left:{score:1000}})).status,400);
+ assert.equal((await post('/api/state',{left:{icon:'data:image/svg+xml;base64,PHN2Zz4='}})).status,400);
+ for(const route of ['/','/overlay.html','/overlay.js','/assets/template.svg','/assets/ScoreboardCondensed.otf'])assert.equal((await fetch(base+route)).status,200,route);
+ const overlay=await fetch(base+'/overlay.html');assert.match(overlay.headers.get('content-security-policy'),/object-src 'none'/);assert.match(await overlay.text(),/overlay.js/);
+ assert.equal((await fetch(base+'/src/main.cjs')).status,404);abort.abort();
+});
+test('desktop configuration rejected atomically on shortcut conflict',async t=>{let calls=0;const app=await createServer({port:0,desktop:{info:()=>({}),configure:()=>{calls++;throw new Error('occupied');}}});t.after(()=>app.close());const {token}=await fetch(app.origin+'/api/session').then(r=>r.json());const response=await fetch(app.origin+'/api/state',{method:'POST',headers:{'X-Scoreboard-Token':token},body:JSON.stringify({shortcuts:{leftPlus:'Control+Alt+F1'}})});assert.equal(response.status,400);assert.equal(calls,1);assert.equal(app.store.state.shortcuts.leftPlus,'Control+Alt+1');});
