@@ -1,0 +1,21 @@
+你为什么打不好铁拳8 — original pixel short
+
+Story, original character designs, arena/dojo art, palette, Latin bitmap lettering,
+indexed drawing code, timeline, chiptune composition and synthesized action effects
+were authored for this project. No official game images, logos, character sprites,
+recorded game sounds or existing melodies are included. TEKKEN 8 is referenced in
+plain text as the subject of independent gameplay commentary; it is a trademark of
+its respective owner. This is not an official game advertisement.
+
+Chinese glyph masks:
+Noto Sans CJK SC, Google / Adobe and contributors.
+https://github.com/notofonts/noto-cjk
+SIL Open Font License 1.1. Derived monochrome glyph atlas; license retained in fonts/NOTO-LICENSE.txt.
+
+Production tools / technical reference:
+Lemo-Opuscar rendering, checking and mux tools; indexed-pixel technique reference.
+https://github.com/lemomo-ai/lemo-opuscar
+MIT License, source revision bebbbe1aa92a3cb4bb6f83500e61b23a17d1aa00.
+The demonstration film's story, characters, backgrounds, score and footage were not reused.
+Python audio/image production uses NumPy (BSD), SciPy (BSD), SoundFile (BSD), Pillow (HPND), and FFmpeg.
+Audio is entirely procedural synthesis; no sample libraries or voice engine are used.
